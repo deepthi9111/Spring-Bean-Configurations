@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	
+	<!-- Bean Creation via constructor -->
+	<bean id="laptop" class="com.deepthi.beaninstantiation.Hp">
+	</bean>
+   
+   <!-- Bean Creation via Static Factory Method -->
+   <bean id="myFactoryBean" class="com.deepthi.beaninstantiation.Hp" factory-method="createInstance"></bean>
+   
+   <!-- Bean creation via instance factory method -->
+   <bean id="myInstanceFactoryBean" class="com.deepthi.beaninstantiation.LaptopBeanFactory"></bean>
+   <bean id="myLaptop" factory-bean="myInstanceFactoryBean" factory-method="createInstance"></bean> 
+</beans>

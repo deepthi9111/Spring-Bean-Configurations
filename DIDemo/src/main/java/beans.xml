@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   
+   <!-- Setter Dependency Injection can be done by using property tag -->
+	<bean id="processor1" class="com.deepthi.didemo.Intel">
+		<property name="name" value="i7"></property>
+		<property name="gen" value="11"></property>
+	</bean>
+	
+	<bean id="laptop1" class="com.deepthi.didemo.Hp">
+		<property name="ram" value="8"></property>
+		<property name="disk" value="512"></property>
+		<property name="processor" ref="processor1"></property>
+	</bean>
+	
+	<bean id="laptop2" class="com.deepthi.didemo.Hp">
+		<property name="ram" value="8"></property>
+		<property name="disk" value="256"></property>
+		<property name="processor" ref="processor1"></property>
+	</bean>
+	
+	<!-- Constructor Dependency Injection can be done by using constructor-arg tag -->
+	<!-- values of constructor-arg can be passed in 3 ways
+	1.Constructor argument name -->
+	<bean id="processor2" class="com.deepthi.didemo.AMD">
+		<constructor-arg name="name" value="RyzenPro"></constructor-arg>
+		<constructor-arg name="gen" value="5"></constructor-arg>
+	</bean>
+	
+	<!--2.Constructor argument index-->
+	<bean id="laptop3" class="com.deepthi.didemo.Hp">
+		<constructor-arg index="0" value="16"></constructor-arg>
+		<constructor-arg index="1" value="256"></constructor-arg>
+		<constructor-arg index="2" ref="processor2"></constructor-arg>
+	</bean>
+	
+	<!-- 3.Constructor argument type -->
+	<bean id="laptop4" class="com.deepthi.didemo.Hp">
+		<constructor-arg type="int" value="8"></constructor-arg>
+		<constructor-arg type="int" value="1024"></constructor-arg>
+		<constructor-arg type="com.deepthi.didemo.Processor" ref="processor2"></constructor-arg>
+	</bean>
+	
+</beans>
